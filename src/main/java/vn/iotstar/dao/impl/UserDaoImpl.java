@@ -32,7 +32,7 @@ public class UserDaoImpl implements IUserDao {
     public List<UserModel> findAll() {
         String sql = "SELECT id, email, username, fullname, password, avatar, roleid, phone, createddate FROM [User]";
         List<UserModel> list = new ArrayList<>();
-        try (Connection con = new DBConnection().getConnection();
+        try (Connection con = DBConnection.getConnection();
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
@@ -47,7 +47,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public UserModel findByUserName(String username) {
         String sql = "SELECT id, email, username, fullname, password, avatar, roleid, phone, createddate FROM [User] WHERE username = ?";
-        try (Connection con = new DBConnection().getConnection();
+        try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, username);
             try (ResultSet rs = ps.executeQuery()) {
@@ -64,7 +64,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public void insert(UserModel u) {
         String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid, phone, createddate) VALUES (?,?,?,?,?,?,?,?)";
-        try (Connection con = new DBConnection().getConnection();
+        try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, u.getEmail());
             ps.setString(2, u.getUserName());
@@ -83,7 +83,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public boolean checkExistEmail(String email) {
         String sql = "SELECT 1 FROM [User] WHERE email = ?";
-        try (Connection con = new DBConnection().getConnection();
+        try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
@@ -98,7 +98,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public boolean checkExistUsername(String username) {
         String sql = "SELECT 1 FROM [User] WHERE username = ?";
-        try (Connection con = new DBConnection().getConnection();
+        try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, username);
             try (ResultSet rs = ps.executeQuery()) {

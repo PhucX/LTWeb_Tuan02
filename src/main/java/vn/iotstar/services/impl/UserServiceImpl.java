@@ -24,6 +24,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserModel findByUserName(String username) {
+        if (username == null) {
+            return null;
+        }
+        return userDao.findByUserName(username);
+    }
+
+    @Override
     public boolean register(String username, String password, String email, String fullname, String phone) {
         if (username == null || password == null || email == null || fullname == null || phone == null) {
             return false;

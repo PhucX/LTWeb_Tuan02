@@ -3,7 +3,6 @@ package vn.iotstar.controllers;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import vn.iotstar.services.UserService;
 import vn.iotstar.services.impl.UserServiceImpl;
 import vn.iotstar.utils.Constant;
 
-@WebServlet(urlPatterns = "/register")
 public class RegisterController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +25,7 @@ public class RegisterController extends HttpServlet {
                 if (Constant.COOKIE_REMEMBER.equals(c.getName()) && c.getValue() != null && !c.getValue().isEmpty()) {
                     HttpSession session = req.getSession(true);
                     session.setAttribute(Constant.SESSION_USERNAME, c.getValue());
-                    resp.sendRedirect(req.getContextPath() + "/admin");
+                    resp.sendRedirect(req.getContextPath() + "/admin/home.jsp");
                     return;
                 }
             }

@@ -3,7 +3,6 @@ package vn.iotstar.controllers;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import vn.iotstar.services.UserService;
 import vn.iotstar.services.impl.UserServiceImpl;
 import vn.iotstar.utils.Constant;
 
-@WebServlet(urlPatterns = "/login")
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -33,10 +31,13 @@ public class LoginController extends HttpServlet {
         if (cookies != null) {
             for (Cookie c : cookies) {
                 if (Constant.COOKIE_REMEMBER.equals(c.getName()) && c.getValue() != null && !c.getValue().isEmpty()) {
-                    HttpSession newSession = req.getSession(true);
-                    newSession.setAttribute(Constant.SESSION_USERNAME, c.getValue());
-                    resp.sendRedirect(req.getContextPath() + "/waiting");
-                    return;
+                    UserModel rememberedUser = userService.findByUserName(c.getValue());
+                    if (rememberedUser != null) {
+                        HttpSession newSession = req.getSession(true);
+                        newSession.setAttribute(Constant.SESSION_ACCOUNT, rememberedUser);
+                        resp.sendRedirect(req.getContextPath() + "/waiting");
+                        return;
+                    }
                 }
             }
         }
