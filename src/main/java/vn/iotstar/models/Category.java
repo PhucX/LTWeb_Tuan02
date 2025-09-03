@@ -10,6 +10,7 @@ public class Category implements Serializable {
 	private String icon;
 	
 	public Category() {
+		super();
 	}
 	
 	public Category(int cateid, String catename, String icon) {
@@ -40,5 +41,10 @@ public class Category implements Serializable {
 	
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [cateid=" + cateid + ", catename=" + catename + ", icon=" + icon + "]";
 	}
 }

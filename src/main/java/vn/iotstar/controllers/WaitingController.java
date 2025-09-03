@@ -29,12 +29,12 @@ public class WaitingController extends HttpServlet {
 
         UserModel u = (UserModel) account;
         int role = u.getRoleid();
-        if (role == 1) {
-            resp.sendRedirect(req.getContextPath() + "/admin/home.jsp");
+        if (role == 1) {	
+            resp.sendRedirect(req.getContextPath() + "/admin/home");
         } else if (role == 2) {
-            resp.sendRedirect(req.getContextPath() + "/manager/home.jsp");
+            resp.sendRedirect(req.getContextPath() + "/manager/home");
         } else {
-            resp.sendRedirect(req.getContextPath() + "/home.jsp");
+            resp.sendRedirect(req.getContextPath() + "/home");
         }
     }
 }

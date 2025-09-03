@@ -36,7 +36,7 @@ public class CategoryAddController extends HttpServlet {
 		
 		Part filePart = req.getPart("icon");
 		if (filePart != null && filePart.getSize() > 0) {
-			String uploadDir = vn.iotstar.utils.Constant.UPLOAD_ROOT_DIR + java.io.File.separator + vn.iotstar.utils.Constant.UPLOAD_ICONS_DIR;
+			String uploadDir = vn.iotstar.utils.Constant.UPLOAD_ROOT_DIR;
 			String fileName = filePart.getSubmittedFileName();
 			try (InputStream in = filePart.getInputStream()) {
 				icon = vn.iotstar.controllers._FileUtil.save(in, fileName, uploadDir);

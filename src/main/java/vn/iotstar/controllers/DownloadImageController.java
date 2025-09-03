@@ -33,12 +33,8 @@ public class DownloadImageController extends HttpServlet {
 			return;
 		}
 		
-		// Try root dir, then icons subdir
+		// Chỉ kiểm tra ở UPLOAD_ROOT_DIR
 		Path filePath = Paths.get(Constant.UPLOAD_ROOT_DIR, fname);
-		if (!Files.exists(filePath)) {
-			filePath = Paths.get(Constant.UPLOAD_ROOT_DIR, Constant.UPLOAD_ICONS_DIR, fname);
-		}
-		
 		if (!Files.exists(filePath) || Files.isDirectory(filePath)) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;

@@ -127,6 +127,7 @@ public class CategoryDaoImpl implements CategoryDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return list;
 	}
 	

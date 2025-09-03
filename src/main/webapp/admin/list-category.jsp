@@ -34,7 +34,7 @@
 					<td>${c.catename}</td>
 					<td>
 						<c:if test="${not empty c.icon}">
-							<img src="${pageContext.request.contextPath}/uploads/icons/${c.icon}" alt="icon" style="height:48px;">
+							<img src="${pageContext.request.contextPath}/download-image?fname=${c.icon}" alt="icon">
 						</c:if>
 					</td>
 					<td>
