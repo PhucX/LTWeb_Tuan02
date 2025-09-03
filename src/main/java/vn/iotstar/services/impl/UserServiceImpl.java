@@ -32,6 +32,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserModel findByEmail(String email) {
+        if (email == null) {
+            return null;
+        }
+        return userDao.findByEmail(email);
+    }
+
+    @Override
+    public boolean forgotPassword(String email) {
+        if (email == null) {
+            return false;
+        }
+        return userDao.checkExistEmail(email);
+    }
+
+    @Override
+    public boolean resetPassword(String email, String newPassword) {
+        if (email == null || newPassword == null) {
+            return false;
+        }
+        try {
+            userDao.updatePassword(email, newPassword);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public boolean register(String username, String password, String email, String fullname, String phone) {
         if (username == null || password == null || email == null || fullname == null || phone == null) {
             return false;

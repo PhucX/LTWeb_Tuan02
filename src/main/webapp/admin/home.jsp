@@ -10,7 +10,13 @@
 	<jsp:include page="/views/topbar.jsp" />
 	<div class="container mt-4">
 		<h1>Admin Home</h1>
-		<p>Trang admin.</p>
+		<div class="mt-4">
+			<h4>Danh mục</h4>
+			<p>Quản lý danh mục sản phẩm: thêm mới, chỉnh sửa, xóa.</p>
+			<div class="d-flex gap-2">
+				<a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/categories">Xem danh sách danh mục</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

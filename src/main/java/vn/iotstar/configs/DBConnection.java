@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DBConnection {
     private static final String DEFAULT_SERVER = "localhost";
-    private static final String DEFAULT_DB = "vidu1"; // Đổi theo tên DB của bạn
+    private static final String DEFAULT_DB = "vidu1"; // Đổi theo tên DB 
     private static final String DEFAULT_PORT = "1433";
-    private static final String DEFAULT_INSTANCE = ""; // Ví dụ: MSSQLSERVER hoặc SQLEXPRESS
+    private static final String DEFAULT_INSTANCE = ""; 
     private static final String DEFAULT_USER = "sa";
     private static final String DEFAULT_PASSWORD = "123456";
 

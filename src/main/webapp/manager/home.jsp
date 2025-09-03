@@ -9,8 +9,36 @@
 <body>
 	<jsp:include page="/views/topbar.jsp" />
 	<div class="container mt-4">
-		<h1>Manager Home</h1>
-		<p>Trang manager.</p>
+		<h1 class="mb-3">Danh mục</h1>
+		<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+		<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+		<%
+			vn.iotstar.services.CategoryService _svc = new vn.iotstar.services.impl.CategoryServiceImpl();
+			java.util.List<vn.iotstar.models.Category> _cats = _svc.getAll();
+			request.setAttribute("_cats", _cats);
+		%>
+		<table class="table table-bordered align-middle">
+			<thead class="table-light">
+				<tr>
+					<th style="width: 80px;">ID</th>
+					<th>Tên danh mục</th>
+					<th style="width: 120px;">Icon</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="c" items="${_cats}">
+					<tr>
+						<td>${c.cateid}</td>
+						<td>${c.catename}</td>
+						<td>
+							<c:if test="${not empty c.icon}">
+								<img src="${pageContext.request.contextPath}/download-image?fname=${c.icon}" alt="icon" style="height:48px;">
+							</c:if>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

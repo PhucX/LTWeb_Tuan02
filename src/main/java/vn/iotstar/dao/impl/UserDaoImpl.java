@@ -62,6 +62,36 @@ public class UserDaoImpl implements IUserDao {
     }
 
     @Override
+    public UserModel findByEmail(String email) {
+        String sql = "SELECT id, email, username, fullname, password, avatar, roleid, phone, createddate FROM [User] WHERE email = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapRow(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void updatePassword(String email, String newPassword) {
+        String sql = "UPDATE [User] SET password = ? WHERE email = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newPassword);
+            ps.setString(2, email);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void insert(UserModel u) {
         String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid, phone, createddate) VALUES (?,?,?,?,?,?,?,?)";
         try (Connection con = DBConnection.getConnection();
