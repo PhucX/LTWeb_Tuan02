@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+  <!-- Exclude internal resources FIRST (order matters) -->
+<mapping path="/WEB-INF/decorators/*" exclude="true"/>
+  <!-- Public mappings -->
+  <mapping path="/admin/*" decorator="web.jsp"/>
+  <mapping path="/*" decorator="web.jsp"/>
+</sitemesh>

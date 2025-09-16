@@ -1,0 +1,39 @@
+package vn.iotstar.controllers;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import vn.iotstar.models.UserModel;
+import vn.iotstar.utils.Constant;
+import vn.iotstar.utils.RoleRedirectUtil;
+import jakarta.servlet.annotation.WebServlet;
+
+@WebServlet("/waiting")
+public class WaitingController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+
+        Object account = session.getAttribute(Constant.SESSION_ACCOUNT);
+        if (account == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+
+        UserModel user = (UserModel) account;
+        String redirectUrl = RoleRedirectUtil.getRedirectUrl(user, req.getContextPath());
+        resp.sendRedirect(redirectUrl);
+    }
+}
+
+
