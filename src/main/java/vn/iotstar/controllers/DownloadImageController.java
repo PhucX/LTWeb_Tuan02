@@ -14,10 +14,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.iotstar.utils.Constant;
-
 import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/download-image")
+
 public class DownloadImageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -34,7 +34,6 @@ public class DownloadImageController extends HttpServlet {
 			resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid file name");
 			return;
 		}
-		
 	       // Lấy đường dẫn thực tế trong dự án
 	       String uploadDir = getServletContext().getRealPath(Constant.UPLOAD_ROOT_DIR);
 	       Path filePath = Paths.get(uploadDir, fname);
@@ -56,5 +55,6 @@ public class DownloadImageController extends HttpServlet {
 			       out.write(buffer, 0, len);
 		       }
 	       }
+
 	}
 }

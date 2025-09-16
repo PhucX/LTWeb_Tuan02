@@ -1,5 +1,4 @@
 
-
 package vn.iotstar.models;
 
 import java.io.Serializable;
@@ -57,6 +56,7 @@ public class UserModel implements Serializable {
         this.userName = userName;
     }
 
+
     // Getter/setter cho fullname (đồng bộ với controller)
     public String getFullName() {
         return fullName;
@@ -72,6 +72,7 @@ public class UserModel implements Serializable {
     public void setImage(String image) {
         this.avatar = image;
     }
+
 
     public String getPassWord() {
         return passWord;
@@ -117,6 +118,7 @@ public class UserModel implements Serializable {
     public String getFullname() {
         return fullName;
     }
+
 }
 
 

@@ -13,6 +13,7 @@ import vn.iotstar.services.impl.UserServiceImpl;
 import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/forgot-password")
+
 public class ForgotPasswordController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserService userService = new UserServiceImpl();

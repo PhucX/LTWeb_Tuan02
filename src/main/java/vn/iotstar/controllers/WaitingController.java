@@ -33,6 +33,7 @@ public class WaitingController extends HttpServlet {
         UserModel user = (UserModel) account;
         String redirectUrl = RoleRedirectUtil.getRedirectUrl(user, req.getContextPath());
         resp.sendRedirect(redirectUrl);
+
     }
 }
 

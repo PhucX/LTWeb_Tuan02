@@ -15,7 +15,6 @@ import jakarta.servlet.http.Part;
 import vn.iotstar.models.Category;
 import vn.iotstar.services.CategoryService;
 import vn.iotstar.services.impl.CategoryServiceImpl;
-
 import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/admin/category/add")
@@ -45,6 +44,7 @@ public class CategoryAddController extends HttpServlet {
 			       icon = vn.iotstar.controllers._FileUtil.save(in, fileName, uploadDir);
 		       }
 	       }
+
 		
 		if (catename == null || catename.isEmpty()) {
 			req.setAttribute("error", "Vui lòng nhập tên danh mục");

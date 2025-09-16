@@ -15,6 +15,7 @@ import vn.iotstar.services.impl.CategoryServiceImpl;
 import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/admin/categories")
+
 public class CategoryListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final CategoryService categoryService = new CategoryServiceImpl();

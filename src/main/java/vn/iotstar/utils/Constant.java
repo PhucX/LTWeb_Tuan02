@@ -10,6 +10,7 @@ public final class Constant {
    
     public static final String UPLOAD_ROOT_DIR = "/uploads/icons";
 
+
     public static final class Path {
         private Path() {}
 

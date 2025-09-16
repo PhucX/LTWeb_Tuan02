@@ -11,10 +11,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.iotstar.models.Category;
 import vn.iotstar.services.CategoryService;
 import vn.iotstar.services.impl.CategoryServiceImpl;
-
 import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/admin/category/delete")
+
 public class CategoryDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final CategoryService categoryService = new CategoryServiceImpl();

@@ -11,9 +11,11 @@ import jakarta.servlet.http.HttpSession;
 import vn.iotstar.services.UserService;
 import vn.iotstar.services.impl.UserServiceImpl;
 import vn.iotstar.utils.Constant;
+
 import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/register")
+
 public class RegisterController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

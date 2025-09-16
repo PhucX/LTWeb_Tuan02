@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body>
+
 	<div class="container mt-4" style="max-width: 640px;">
 		<h3 class="mb-3">Đăng ký tài khoản</h3>
 		<c:if test="${not empty alert}">

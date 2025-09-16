@@ -15,11 +15,14 @@ import vn.iotstar.models.Category;
 import vn.iotstar.services.CategoryService;
 import vn.iotstar.services.impl.CategoryServiceImpl;
 
+import jakarta.servlet.annotation.WebServlet;
+
+@WebServlet("/admin/category/edit")
 @MultipartConfig
 public class CategoryEditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final CategoryService categoryService = new CategoryServiceImpl();
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String idParam = req.getParameter("id");
@@ -36,37 +39,36 @@ public class CategoryEditController extends HttpServlet {
 		req.setAttribute("category", c);
 		req.getRequestDispatcher("/admin/edit-category.jsp").forward(req, resp);
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(req.getParameter("cateid"));
 		String catename = req.getParameter("catename");
-
+		
 		Category c = categoryService.get(id);
 		if (c == null) {
 			resp.sendRedirect(req.getContextPath() + "/admin/categories");
 			return;
 		}
 		c.setCatename(catename);
-
-		// handle icon upload
-		Part filePart = req.getPart("icon");
-		if (filePart != null && filePart.getSize() > 0) {
-			String uploadDir = req.getServletContext().getRealPath("/uploads/icons");
-			try (InputStream in = filePart.getInputStream()) {
-				boolean updated = categoryService.updateIcon(id, in, filePart.getSubmittedFileName(), uploadDir);
-				if (updated) {
-					// Lấy lại category để cập nhật icon mới nhất
-					Category updatedCat = categoryService.get(id);
-					if (updatedCat != null) {
-						c.setIcon(updatedCat.getIcon());
-					}
-				}
-			}
-		}
-
-		categoryService.edit(c);
-		resp.sendRedirect(req.getContextPath() + "/admin/categories");
+	       
+	       Part filePart = req.getPart("icon");
+	       if (filePart != null && filePart.getSize() > 0) {
+		       // Lưu vào thư mục dự án để truy cập qua URL
+		       String uploadDir = req.getServletContext().getRealPath(vn.iotstar.utils.Constant.UPLOAD_ROOT_DIR);
+		       try (InputStream in = filePart.getInputStream()) {
+			       boolean updated = categoryService.updateIcon(id, in, filePart.getSubmittedFileName(), uploadDir);
+			       if (updated) {
+				       Category updatedCat = categoryService.get(id);
+				       if (updatedCat != null) {
+					       c.setIcon(updatedCat.getIcon());
+				       }
+			       }
+		       }
+	       }
+               
+	       categoryService.edit(c);
+	       resp.sendRedirect(req.getContextPath() + "/admin/categories");
 	}
 }
